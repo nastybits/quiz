@@ -1,0 +1,36 @@
+/* Файл определения миксин SCSS. Переменные доступны в любом компоненте
+ при условии указания lang="SCSS" в директиве <style>
+ */
+
+// media queries
+@mixin min-w($arg) {
+  @media screen and (min-width: $arg) {
+    @content
+  }
+}
+
+@mixin max-w($arg) {
+  @media screen and (max-width: $arg) {
+    @content
+  }
+}
+
+@mixin flex($dir: null, $justify: null, $align: null) {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  @if $dir != null {
+    flex-direction: $dir;
+  }
+
+  @if $justify != null {
+    justify-content: $justify;
+  }
+
+  @if $align != null {
+    align-items: $align;
+  }
+}

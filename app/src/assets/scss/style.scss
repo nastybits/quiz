@@ -1,0 +1,95 @@
+// Основные стили приложения
+@import "variables";
+@import "mixins";
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #333;
+  color: #eee;
+  font-family: $text-primary;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  height: 100vh;
+  padding: 40px 20px 40px 20px;
+
+  @include min-w($xxl) {
+    padding-top: 80px;
+  }
+}
+
+.page__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+}
+
+.page__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.page__footer {
+  width: 100%;
+  height: 100px;
+}
+
+.page__title {
+  font-size: 70px;
+  margin-bottom: 40px;
+  padding: 0;
+
+  @include min-w($xxl) {
+    font-size: 100px;
+  }
+}
+
+.page__description {
+  width: 100%;
+  font-size: 60px;
+  max-width: 1200px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.btn {
+  border: 1px solid white;
+  border-radius: 4px;
+  box-shadow: none;
+  background: transparent;
+  font-size: 16px;
+  padding: 10px 12px;
+  color: inherit;
+  cursor: pointer;
+}
+
+.btn_lg {
+  font-size: 40px;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
