@@ -1,6 +1,10 @@
 <!-- Точка входа -->
 <template>
-  <RouterView/>
+  <div class="wrapper">
+    <div class="middle">
+      <RouterView/>
+    </div>
+  </div>
 </template>
 
 <script>

@@ -25,10 +25,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .rules {
-  font-size: 45px;
+  font-size: 25px;
+
+  @include min-w($xxl) {
+    font-size: 45px;
+  }
 }
+
 .rules li {
   margin-bottom: 20px;
 }

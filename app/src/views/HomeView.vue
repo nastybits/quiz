@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page container">
     <h1 class="page__title">Добро пожаловать!</h1>
     <div class="page__body">
       <div class="page__description">

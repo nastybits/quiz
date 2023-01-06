@@ -1,6 +1,7 @@
 // Основные стили приложения
 @import "variables";
 @import "mixins";
+@import "grid";
 
 body {
   margin: 0;
@@ -19,10 +20,6 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-  height: 100vh;
   padding: 40px 20px 40px 20px;
 
   @include min-w($xxl) {
@@ -63,10 +60,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .page__description {
   width: 100%;
-  font-size: 60px;
-  max-width: 1200px;
-  margin-bottom: 60px;
+  font-size: 40px;
+  max-width: 1000px;
+  margin-bottom: 40px;
   text-align: center;
+
+  @include min-w($xxl) {
+    font-size: 60px;
+    margin-bottom: 60px;
+    max-width: 1200px;
+  }
 }
 
 .btn {
@@ -81,7 +84,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn_lg {
-  font-size: 40px;
+  font-size: 30px;
+  padding: 15px 20px;
 }
 
 .v-enter-active,
