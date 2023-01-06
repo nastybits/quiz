@@ -1,16 +1,5 @@
 <template>
-  <div class="about">
-    <h1>This is an NOT FOUND page</h1>
-    <router-link :to="{ name: 'Test', params: {} }">Link to test page</router-link>
+  <div class="page">
+    <h1 class="page__title">#404: Not Found</h1>
   </div>
 </template>
-
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>

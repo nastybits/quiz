@@ -1,7 +1,6 @@
 /** Библиотека маршрутов приложения **/
 import HomeView from "@/views/HomeView.vue"
 import AdminView from "@/views/AdminView.vue"
-import RulesView from "@/views/RulesView.vue"
 import NotFound from "@/views/NotFoundView.vue"
 
 let routes = [
@@ -14,11 +13,6 @@ let routes = [
         path: "/admin",
         name: "Admin",
         component: AdminView
-    },
-    {
-        path: "/rules",
-        name: "Rules",
-        component: RulesView
     },
 ]
 

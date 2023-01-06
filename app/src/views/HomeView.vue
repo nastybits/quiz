@@ -1,22 +1,53 @@
 <template>
   <div class="page container">
-    <h1 class="page__title">Добро пожаловать!</h1>
     <div class="page__body">
-      <div class="page__description">
-        Вы участвуете в лучшей на свете пародии на игру &laquo;ЧТО?ГДЕ?КОГДА?&raquo;.
-        В ней вам необходимо будет отвечать на вопросы. Все вопросы идеально проверены и отобраны лучшими экспертами
-        в области подобных игр ;)
+      <TheMeeting v-if="state.type === 'Start'" key="=s"/>
+      <TheRules v-if="state.type === 'Rules'" key="r"/>
+      <div v-if="state.type === 'Question'" key="q">
+        <h1 class="page__title">Раунд {{ state.questionIdx + 1}}</h1>
+        <quiz-question :questionIdx="state.questionIdx" :showQuestion="state.showQuestion" :showAnswer="state.showAnswer"/>
       </div>
-    </div>
-    <div class="page__footer">
-      <button class="btn btn_lg" @click="$router.push('/rules')">К правилам</button>
     </div>
   </div>
 </template>
 
 <script>
+import Cookies from "js-cookie"
+import TheMeeting from "@/components/TheMeeting.vue"
+import TheRules from "@/components/TheRules.vue"
+import QuizQuestion from "@/components/QuizQuestion.vue"
+
+window.stateInterval = null
+
 export default {
-  name: "HomeView"
+  name: "HomeView",
+  components: {
+    TheMeeting,
+    TheRules,
+    QuizQuestion
+  },
+  data() {
+    return {
+      state: { type: "Start" },
+      time: 0
+    }
+  },
+  methods: {
+    checkState() {
+      const data = Cookies.get("state")
+      if (data) {
+        this.state = JSON.parse(data)
+      }
+    }
+  },
+  mounted() {
+    window.stateInterval = setInterval(() => {
+      this.checkState()
+    }, 1000)
+  },
+  unmounted() {
+    clearInterval(window.stateInterval)
+  }
 }
 </script>
 

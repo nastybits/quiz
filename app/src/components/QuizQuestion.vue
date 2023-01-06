@@ -28,11 +28,13 @@
 </template>
 
 <script>
+import { useQuestionsStore } from "@/stores/questions"
+
 export default {
   name: "QuizQuestion",
   props: {
-    question: {
-      type: Object,
+    questionIdx: {
+      type: Number,
       required: true
     },
     showQuestion: {
@@ -42,6 +44,17 @@ export default {
     showAnswer: {
       type: Boolean,
       default: false
+    }
+  },
+  setup() {
+    const store = useQuestionsStore()
+    const questions = store.questions
+
+    return { questions }
+  },
+  computed: {
+    question() {
+      return this.questions[this.questionIdx]
     }
   }
 }

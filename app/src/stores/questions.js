@@ -5,7 +5,7 @@ import { questions, dumbQuestions } from "./qusteionsData";
 
 export const useQuestionsStore = defineStore('questions', {
   state: () => ({
-      questions: dumbQuestions
+      questions: questions
   }),
   getters: {
     answered: (state) => state.questions.filter(el => !el.done),

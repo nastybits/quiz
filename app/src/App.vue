@@ -14,10 +14,6 @@ export default {
   name: "App",
   components: {
     RouterView
-  }
+  },
 }
 </script>
-
-<style scoped>
-
-</style>
