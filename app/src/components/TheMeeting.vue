@@ -5,8 +5,9 @@
         Добро пожаловать! <br>
         На первые и единственные ежегодные зимние игры
       </p>
+      <hr>
       <p><small>команды</small><br>
-      <b>bikini bottom</b>
+      <b>bikini bottom</b> <br> <small>или</small> <br> <b>Жопа Чубаки</b>
       </p>
     </div>
     <div class="page__description">
@@ -22,3 +23,17 @@ export default {
   name: "TheMeeting"
 }
 </script>
+
+<style>
+.page__title {
+  line-height: 1;
+}
+hr {
+  padding: 0;
+  margin: 10px 0;
+}
+
+p {
+  margin: 0 0 20px 0;
+}
+</style>

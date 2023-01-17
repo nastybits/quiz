@@ -5,8 +5,8 @@
         <button class="btn" @click="setState('Start')">Начало</button>
         <button class="btn" @click="setState('Rules')">Правила</button>
         <button class="btn" @click="setState('Question')">Вопросы</button>
-        <button class="btn" @click="toggleMusic('volchok')">Волчек</button>
-        <button class="btn" @click="toggleMusic('volchok2')">Волчек 2</button>
+        <button class="btn" @click="toggleMusic('volchok')">Волчок</button>
+        <button class="btn" @click="toggleMusic('volchok2')">Волчок 2</button>
         <hr>
         <button v-if="state.questionIdx >= 0 && !state.showAnswer && !isTimerActive && !state.showQuestion" class="btn" @click="askQuestion">Внимание вопрос!</button>
         <button v-if="state.showQuestion && !state.showAnswer" class="btn" @click="answer(true)">Верный ответ</button>
@@ -48,10 +48,11 @@
 
 <script>
 import Cookies from "js-cookie"
-
-import {useQuestionsStore} from "@/stores/questions";
 import audio from "@/mixins/audio"
 import QuizQuestion from "@/components/QuizQuestion.vue"
+import { useQuestionsStore } from "@/stores/questions"
+
+window.timer = null
 
 export default {
   name: "AdminView",
@@ -69,10 +70,7 @@ export default {
   },
   setup() {
     const store = useQuestionsStore()
-    const questions = store.questions
-    window.timer = null
-
-    return { questions }
+    return { questions: store.questions }
   },
   computed: {
     currentQuestion() {

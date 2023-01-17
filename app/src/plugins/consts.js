@@ -13,7 +13,7 @@ const consts = Object.freeze({
   },
   LANG_EN: "en",
   LANG_RU: "ru",
-  ANSWER_TIME: 60
+  ANSWER_TIME: 120
 })
 
 export { consts } // Для использования не только внутри приложения

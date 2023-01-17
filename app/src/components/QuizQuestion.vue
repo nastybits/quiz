@@ -32,6 +32,10 @@ import { useQuestionsStore } from "@/stores/questions"
 
 export default {
   name: "QuizQuestion",
+  setup() {
+    const store = useQuestionsStore()
+    return { questions: store.questions }
+  },
   props: {
     questionIdx: {
       type: Number,
@@ -45,12 +49,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  setup() {
-    const store = useQuestionsStore()
-    const questions = store.questions
-
-    return { questions }
   },
   computed: {
     question() {
