@@ -11,44 +11,42 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Cookies from "js-cookie"
+import { ref, onMounted, onUnmounted } from "vue"
 import TheMeeting from "@/components/TheMeeting.vue"
 import TheRules from "@/components/TheRules.vue"
 import QuizQuestion from "@/components/QuizQuestion.vue"
 
-window.stateInterval = null
+// Состояния приложения
+let state = ref({ type: "Start" })
 
-export default {
-  name: "HomeView",
-  components: {
-    TheMeeting,
-    TheRules,
-    QuizQuestion
-  },
-  data() {
-    return {
-      state: { type: "Start" },
-      time: 0
-    }
-  },
-  methods: {
-    checkState() {
-      const data = Cookies.get("state")
-      if (data) {
-        this.state = JSON.parse(data)
-      }
-    }
-  },
-  mounted() {
-    window.stateInterval = setInterval(() => {
-      this.checkState()
-    }, 1000)
-  },
-  unmounted() {
-    clearInterval(window.stateInterval)
+/** Проверка сохроаненного состояния
+ * @return {void}
+ */
+function checkState() {
+  let data = Cookies.get("state")
+  if (!data) {
+    return
   }
+  try {
+    data = JSON.parse(data)
+  } catch (e) {
+    console.error(e)
+    return
+  }
+  state.value = data
 }
+
+onMounted(() => {
+  window.stateInterval = setInterval(() => {
+    checkState()
+  }, 1000)
+})
+
+onUnmounted(() => {
+  clearInterval(window.stateInterval)
+})
 </script>
 
 <style lang="scss" scoped>
