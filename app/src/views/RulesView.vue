@@ -10,11 +10,18 @@
       <li>Капитан команды или выбранный им игрок должен дать ответ на вопрос.</li>
       <li>Ответ фиксируется ведущим, а затем озвучивается правильный ответ.</li>
     </ol>
+    <template #footer>
+      <Btn label="Продолжить" title="Продолжить" @click="router.push('/round/1/1')"/>
+    </template>
   </Page>
 </template>
 
 <script setup>
-import Page from "@/components/Page.vue";
+import Btn from "@/components/ui/QBtn.vue"
+import Page from "@/components/Page.vue"
+import { useRouter } from "vue-router"
+
+const router = useRouter()
 </script>
 
 <style lang="scss" scoped>

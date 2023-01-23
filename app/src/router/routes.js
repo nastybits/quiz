@@ -14,7 +14,7 @@ const routes = [
     component: () => import("@/views/RulesView.vue")
   },
   {
-    path: "/round/:num",
+    path: "/round/:pID/:qID",
     name: "round",
     component: () => import("@/views/RoundView.vue")
   },

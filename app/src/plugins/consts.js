@@ -15,7 +15,9 @@ const consts = Object.freeze({
   LANG_RU: "ru"
 })
 
-export { consts } // Для использования не только внутри приложения
+// Для использования не только внутри приложения
+export { consts }
+
 export default function install(app) {
   app.config.globalProperties.$consts = consts
 }

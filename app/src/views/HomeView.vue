@@ -3,43 +3,18 @@
     Вы участвуете в лучшей на свете пародии на игру &laquo;ЧТО?ГДЕ?КОГДА?&raquo;.
     В ней вам необходимо будет отвечать на вопросы. Все вопросы идеально проверены и отобраны лучшими экспертами
     в области подобных игр ;)
+    <template #footer>
+      <Btn label="Продолжить" title="Продолжить" @click="router.push('/rules')"/>
+    </template>
   </Page>
 </template>
 
 <script setup>
-import Cookies from "js-cookie"
+import Btn from "@/components/ui/QBtn.vue"
 import Page from "@/components/Page.vue"
-import { ref, onMounted, onUnmounted } from "vue"
+import { useRouter } from "vue-router"
 
-// Состояния приложения
-let state = ref({ type: "Start" })
-
-/** Проверка сохраненного состояния
- * @return {void}
- */
-function checkState() {
-  let data = Cookies.get("state")
-  if (!data) {
-    return
-  }
-  try {
-    data = JSON.parse(data)
-  } catch (e) {
-    console.error(e)
-    return
-  }
-  state.value = data
-}
-
-onMounted(() => {
-  window.stateInterval = setInterval(() => {
-    checkState()
-  }, 1000)
-})
-
-onUnmounted(() => {
-  clearInterval(window.stateInterval)
-})
+const router = useRouter()
 </script>
 
 <style lang="scss" scoped>

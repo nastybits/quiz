@@ -1,4 +1,11 @@
 /** Генерация уникального идентификатора компонента **/
+const DEFAULTS = {
+  // Имя поля по которому можно получить доступ к UID внутри компонента
+  uidProp: "uid",
+  // Префикс который будет сгенерирован для UID в HTML
+  uidPrefix: "uid-"
+}
+
 const methods = {
   /** Генерация уникального идентификатора компонента с кастомным именем
    * Пример: $id('my-id') => 'uid-42-my-id'
@@ -20,13 +27,6 @@ const methods = {
   $idRef(id) {
     return `#${this.$id(id)}`
   }
-}
-
-const DEFAULTS = {
-  // Имя поля по которому можно получить доступ к UID внутри компонента
-  uidProp: "uid",
-  // Префикс который будет сгенерирован для UID в HTML
-  uidPrefix: "uid-"
 }
 
 export default function install(app, options = {}) {

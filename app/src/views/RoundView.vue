@@ -1,16 +1,17 @@
 <template>
-  <Page :title="`Раунд ${roundNumber}`">
-    <QuizQuestion/>
+  <Page :title="`Раунд ${route.params.qID}`">
+
   </Page>
 </template>
 
 <script setup>
 import Page from "@/components/Page.vue"
-import QuizQuestion from "@/components/QuizQuestion.vue"
 import { ref } from "vue"
+import { useRoute } from "vue-router"
 
 // Номер раунда
-const roundNumber = ref(1)
+const route = useRoute()
+const roundNumber = 1
 </script>
 
 <style lang="scss" scoped>
