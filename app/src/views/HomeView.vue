@@ -1,27 +1,20 @@
 <template>
-  <div class="page container">
-    <div class="page__body">
-      <TheMeeting v-if="state.type === 'Start'" key="=s"/>
-      <TheRules v-if="state.type === 'Rules'" key="r"/>
-      <div v-if="state.type === 'Question'" key="q">
-        <h1 class="page__title">Раунд {{ state.questionIdx + 1}}</h1>
-        <quiz-question :questionIdx="state.questionIdx" :showQuestion="state.showQuestion" :showAnswer="state.showAnswer"/>
-      </div>
-    </div>
-  </div>
+  <Page title="Добро пожаловать!" subtitle="На первые и единственные ежегодные зимние игры!">
+    Вы участвуете в лучшей на свете пародии на игру &laquo;ЧТО?ГДЕ?КОГДА?&raquo;.
+    В ней вам необходимо будет отвечать на вопросы. Все вопросы идеально проверены и отобраны лучшими экспертами
+    в области подобных игр ;)
+  </Page>
 </template>
 
 <script setup>
 import Cookies from "js-cookie"
+import Page from "@/components/Page.vue"
 import { ref, onMounted, onUnmounted } from "vue"
-import TheMeeting from "@/components/TheMeeting.vue"
-import TheRules from "@/components/TheRules.vue"
-import QuizQuestion from "@/components/QuizQuestion.vue"
 
 // Состояния приложения
 let state = ref({ type: "Start" })
 
-/** Проверка сохроаненного состояния
+/** Проверка сохраненного состояния
  * @return {void}
  */
 function checkState() {

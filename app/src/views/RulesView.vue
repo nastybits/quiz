@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div class="page__title">Правила игры.</div>
+  <Page title="Правила игры">
     <ol class="rules">
       <li>Игра состоит из 14 вопросов идущих в случайном порядке.</li>
       <li>В начале раунда ведущий зачитывает текст вопроса.</li>
@@ -11,13 +10,11 @@
       <li>Капитан команды или выбранный им игрок должен дать ответ на вопрос.</li>
       <li>Ответ фиксируется ведущим, а затем озвучивается правильный ответ.</li>
     </ol>
-  </div>
+  </Page>
 </template>
 
-<script>
-export default {
-  name: "TheRules"
-}
+<script setup>
+import Page from "@/components/Page.vue";
 </script>
 
 <style lang="scss" scoped>

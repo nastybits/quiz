@@ -1,15 +1,9 @@
-/** Генерация уникального идентификатора компонента
-
- ---------------------------
- @author Podosenov Dmitriy
- @email podosenov.dn@gmail.com
- @date 21.06.2021
- **/
-
+/** Генерация уникального идентификатора компонента **/
 const methods = {
-  /**
-   * Генерация уникального идентификатора компонента с кастомным именем
+  /** Генерация уникального идентификатора компонента с кастомным именем
    * Пример: $id('my-id') => 'uid-42-my-id'
+   * @param uidProp {string}
+   * @return {function}
    */
   $generateUid(uidProp) {
     return function $id(id = "") {
@@ -17,11 +11,11 @@ const methods = {
     }
   },
 
-  /**
-   * Генерация ссылки на уникальный идентификатор компонента
+  /** Генерация ссылки на уникальный идентификатор компонента
    * Добавляет префикс '#' к сгенерированному ID
-   *
    * Пример: $idRef("my-id") => "#uid-42-my-id"
+   * @param id {string}
+   * @return {string}
    */
   $idRef(id) {
     return `#${this.$id(id)}`
@@ -29,8 +23,10 @@ const methods = {
 }
 
 const DEFAULTS = {
-  uidProp: "uid", // Имя поля по которому можно получить доступ к UID внутри компонента
-  uidPrefix: "uid-" // Префикс который будет сгенерирован для UID в HTML
+  // Имя поля по которому можно получить доступ к UID внутри компонента
+  uidProp: "uid",
+  // Префикс который будет сгенерирован для UID в HTML
+  uidPrefix: "uid-"
 }
 
 export default function install(app, options = {}) {

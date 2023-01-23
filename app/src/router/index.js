@@ -1,15 +1,14 @@
 /** Маршрутизатор Vue (https://router.vuejs.org/ru/)
-
  ---------------------------
- @author Podosenov Dmitriy
+ @author Nastybits
  @email podosenov.dn@gmail.com
- @date 16.06.2021
+ @date 23.01.2023
  **/
 
 import { createRouter, createWebHistory } from "vue-router"
 import routes from "./routes"
 
-const router = createRouter({
+export default createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: routes,
   scrollBehavior(to, from, savedPosition) {
@@ -23,6 +22,3 @@ const router = createRouter({
     return savedPosition || { left: 0, top: 0 }
   }
 })
-
-export default router
-
