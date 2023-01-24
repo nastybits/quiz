@@ -1,3 +1,4 @@
+<!-- Тестовый компонент. Доступен только в dev окружении -->
 <template>
   <div class="page">
     <h2 class="page__title">Counter 1: {{ counter1 }} is {{ computeCounter1Type }}</h2>

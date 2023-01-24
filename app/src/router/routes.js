@@ -14,14 +14,19 @@ const routes = [
     component: () => import("@/views/RulesView.vue")
   },
   {
+    path: "/admin/create",
+    name: "Game creation",
+    component: () => import("@/views/admin/GameCreationView.vue")
+  },
+  {
+    path: "/admin/manage",
+    name: "Game management",
+    component: () => import("@/views/admin/GameCreationView.vue")
+  },
+  {
     path: "/round/:pID/:qID",
     name: "round",
     component: () => import("@/views/RoundView.vue")
-  },
-  {
-    path: "/admin",
-    name: "Admin",
-    component: () => import("@/views/AdminView.vue")
   },
 ]
 

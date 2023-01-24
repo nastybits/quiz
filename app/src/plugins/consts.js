@@ -1,18 +1,18 @@
 /** Плагин констант доступных во всем приложении **/
 const consts = Object.freeze({
-  DOMAIN: "quiz.loc",
-  ERR_MESSAGE: "Произошла ошибка",
-  // Точки разлома (должны соответствовать css аналогу в /src/assets/vars.scss)
-  BREAKPOINTS: {
-    xs: 520,
-    sm: 980,
-    md: 1500,
-    lg: 1620,
-    xl: 1800,
-    xxl: 2100
-  },
-  LANG_EN: "en",
-  LANG_RU: "ru"
+  HOST: "localhost",
+  // Максимальное количество одноверменно запущенных игр
+  MAX_ACTIVE_GAMES: 10,
+  // Состояния раунда
+  ROUND_STATES: {
+    INTRO: 0,
+    QUESTION: 1,
+    QUESTION_WORDING: 2,
+    TIME: 3,
+    ANSWER: 4,
+    ANSWER_COMMENT: 5,
+    TOTAL: 6
+  }
 })
 
 // Для использования не только внутри приложения

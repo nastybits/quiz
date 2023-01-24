@@ -26,15 +26,15 @@
 <script setup>
 import { onMounted } from "vue"
 import { RouterView } from 'vue-router'
-import { useQuestionsPackStore } from "@/stores/questionsPack"
-import questionsData from '@/data/questionsData'
+import { useQuestionPacks } from "@/stores/questionPacks"
+import packs from '@/data/questionsData'
 
 /** Загрузка вопросов
  * @return {void}
  */
 function loadQuestions() {
-  const packStore = useQuestionsPackStore()
-  packStore.init(questionsData)
+  const packStore = useQuestionPacks()
+  packStore.init(packs)
   console.log(packStore.packs)
 }
 

@@ -1,3 +1,4 @@
+<!-- Комопнент страницы для создания игры -->
 <template>
   <div class="container">
     <h1>Создание игры</h1>
@@ -5,7 +6,7 @@
       <form action="#">
         <div>
           <label for="#teamName">Введите название команды</label>
-          <input type="text" name="teamName" id="teamName">
+          <input type="text" v-model="teamName" name="teamName" id="teamName">
         </div>
         <div>
           <label for="#packID">Выберите пакет вопросов</label>
@@ -46,18 +47,26 @@
         </li>
       </ol>
     </div>
+    <hr>
+    <QBtn v-if="pack && teamName" label="Начать" title="Начать" @click="startGame()"/>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue"
-import { useQuestionsPackStore } from "@/stores/questionsPack"
-import QBtn from "../components/ui/QBtn.vue";
+import { useQuestionPacks } from "@/stores/questionPacks"
+import QBtn from "../../components/ui/QBtn.vue";
 
-const packsStore = useQuestionsPackStore()
+// Хранилище пакетов
+const packsStore = useQuestionPacks()
 
+let teamName = ref(null)
 let pack = ref(null)
 let isQuestionsShown = ref(false)
+
+function startGame() {
+  console.log("Game now starting for team "+ teamName.value +" with pack ID "+ pack.value.ID)
+}
 </script>
 
 <style lang="scss" scoped>
