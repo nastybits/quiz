@@ -1,3 +1,4 @@
+<!-- Компонент фабрика кнопок -->
 <template>
   <button :class="['q-btn', {'q-btn_lg': lg}]" :title="computedTitle" @click="$emit('click')">
     <slot>{{ label }}</slot>
@@ -5,7 +6,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed } from "vue"
 
 const props = defineProps({
   label: String,

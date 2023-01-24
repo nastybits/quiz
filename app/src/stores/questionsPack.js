@@ -3,12 +3,10 @@ import { defineStore } from "pinia"
 
 export const useQuestionsPackStore = defineStore('questionsPack', {
   state: () => ({
+    packs: [],
     pack: null
   }),
   getters: {
-    ID() {
-      return this.pack.ID
-    },
     Questions() {
       if (!this.pack) {
         return []
@@ -24,17 +22,18 @@ export const useQuestionsPackStore = defineStore('questionsPack', {
   },
   actions: {
     init(data) {
-      if (typeof data !== "string") {
-        this.pack = data
-        return
+      if (typeof data === "string") {
+        try {
+          data = JSON.parse(data)
+        } catch (e) {
+          this.packs = []
+          console.error(e)
+          return
+        }
       }
-
-      try {
-        this.pack = JSON.parse(data)
-      } catch (e) {
-        this.pack = null
-        console.error(e)
+      if (Array.isArray(data)) {
+        this.packs = data
       }
-    },
+    }
   }
 })

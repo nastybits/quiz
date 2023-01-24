@@ -48,7 +48,7 @@ defineProps({
 
 .page__title {
   font-size: 70px;
-  margin-bottom: 40px;
+  margin-bottom: 0;
   padding: 0;
   text-align: center;
 
