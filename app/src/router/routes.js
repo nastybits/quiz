@@ -21,7 +21,7 @@ const routes = [
   {
     path: "/admin/manage",
     name: "Game management",
-    component: () => import("@/views/admin/GameCreationView.vue")
+    component: () => import("@/views/admin/GameManageView.vue")
   },
   {
     path: "/round/:pID/:qID",

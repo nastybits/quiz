@@ -27,6 +27,7 @@
 import { onMounted } from "vue"
 import { RouterView } from 'vue-router'
 import { useQuestionPacks } from "@/stores/questionPacks"
+import { useGameState} from "@/stores/gameState"
 import packs from '@/data/questionsData'
 
 /** Загрузка вопросов
@@ -34,8 +35,9 @@ import packs from '@/data/questionsData'
  */
 function loadQuestions() {
   const packStore = useQuestionPacks()
+  const gameStore = useGameState()
   packStore.init(packs)
-  console.log(packStore.packs)
+  gameStore.restoreFromCookies()
 }
 
 /** Загрузка текущих показателей команды

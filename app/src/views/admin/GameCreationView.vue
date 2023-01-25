@@ -56,11 +56,13 @@
 import { ref, onBeforeMount } from "vue"
 import { useQuestionPacks } from "@/stores/questionPacks"
 import { useGameState } from "@/stores/gameState"
+import { useRouter } from "vue-router"
 import QBtn from "../../components/ui/QBtn.vue";
 
 // Хранилище пакетов
 const packsStore = useQuestionPacks()
 const game = useGameState()
+const router = useRouter()
 
 let teamName = ref(null)
 let pack = ref(null)
@@ -77,6 +79,7 @@ onBeforeMount(() => {
 function startGame(id, team) {
   game.start(id, team)
   game.log()
+  router.push("/admin/manage")
 }
 </script>
 
