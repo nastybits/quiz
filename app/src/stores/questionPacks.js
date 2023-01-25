@@ -20,6 +20,9 @@ export const useQuestionPacks = defineStore('questionsPack', {
       if (Array.isArray(data)) {
         this.packs = data
       }
+    },
+    getPack(id) {
+      return this.packs.find(p => p.ID === id)
     }
   }
 })

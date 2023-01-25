@@ -48,24 +48,35 @@
       </ol>
     </div>
     <hr>
-    <QBtn v-if="pack && teamName" label="Начать" title="Начать" @click="startGame()"/>
+    <QBtn v-if="pack && teamName" label="Начать" title="Начать" @click="startGame(pack.ID, teamName)"/>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref, onBeforeMount } from "vue"
 import { useQuestionPacks } from "@/stores/questionPacks"
+import { useGameState } from "@/stores/gameState"
 import QBtn from "../../components/ui/QBtn.vue";
 
 // Хранилище пакетов
 const packsStore = useQuestionPacks()
+const game = useGameState()
 
 let teamName = ref(null)
 let pack = ref(null)
 let isQuestionsShown = ref(false)
 
-function startGame() {
-  console.log("Game now starting for team "+ teamName.value +" with pack ID "+ pack.value.ID)
+onBeforeMount(() => {
+  game.restoreFromCookies()
+  if (game.ID) {
+    pack = packsStore.getPack(game.PackID)
+    teamName = game.Team
+  }
+})
+
+function startGame(id, team) {
+  game.start(id, team)
+  game.log()
 }
 </script>
 
