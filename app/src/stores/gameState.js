@@ -13,7 +13,11 @@ export const useGameState = defineStore("gameState", {
     QuestionIdx: null,
   }),
   actions: {
-    // Запуск состояния
+    /**
+     * Запуск состояния
+     * @param {number} packID
+     * @param {string} team
+     */
     start(packID, team) {
       this.update({
         ID: "test",
@@ -24,15 +28,28 @@ export const useGameState = defineStore("gameState", {
         QuestionIdx: 0,
       })
     },
-    // Переход к следующему раунду
+    /**
+     * Переход к следующему раунду
+     */
     nextRound() {
+      if (!this.ID) {
+        console.warn("Не выбран игра")
+        return
+      }
+      if (!this.RoundState !== consts.ROUND_STATES.TOTAL) {
+        console.warn("Раунд не завершен")
+        return
+      }
       this.update({
         Round: this.Round + 1,
         RoundState: consts.ROUND_STATES.INTRO,
         QuestionIdx: this.QuestionIdx + 1
       })
     },
-    // Обновление состояния
+    /**
+     * Обновление состояния
+     * @param {object} opts
+     */
     update(opts) {
       this.ID = opts.hasOwnProperty("ID") ? opts.ID : this.ID
       this.PackID = opts.hasOwnProperty("PackID") ? opts.PackID : this.PackID
@@ -54,15 +71,22 @@ export const useGameState = defineStore("gameState", {
         console.error(e)
       }
     },
-    // Удаление состояния
+    /**
+     * Удаление состояния
+     */
     reset() {
       Cookie.remove("gameState")
       this.$reset()
     },
+    /**
+     * Логирование
+     */
     log() {
       console.log(this.ID, this.PackID, this.Team, this.Round, this.RoundState, this.QuestionIdx)
     },
-    // Восстановление состояния из Cookies
+    /**
+     * Восстановление состояния из Cookies
+     */
     restoreFromCookies() {
       const jsonState = Cookie.get("gameState")
       if (!jsonState) {
