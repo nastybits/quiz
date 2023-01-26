@@ -1,6 +1,6 @@
 <template>
   <Page title="Добро пожаловать!">
-    <Btn label="Создать игру" title="Создать игру" @click="router.push('/rules')" lg/>
+    <Btn label="Создать игру" title="Создать игру" @click="router.push('/admin/create')" lg/>
   </Page>
 </template>
 
