@@ -1,3 +1,4 @@
+<!-- Компонент главного экрана игры -->
 <template>
   <Page title="Игра">
     <template #footer>
