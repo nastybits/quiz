@@ -28,6 +28,7 @@ export function useAudio(files) {
     for (const track of tracks.value) {
       track.el.pause()
       track.el.currentTime = 0.0
+      track.isPlaying = false
     }
     currentTrack.value = null
   }
@@ -42,19 +43,27 @@ export function useAudio(files) {
       audio.style.display = "none"
       audio.addEventListener("timeupdate", (e) => {
         if (currentTrack.value) {
-          currentTrack.value.duration = e.target.currentTime
+          currentTrack.value.time = e.target.currentTime
         }
       })
-      audio.addEventListener("ended", () => {
-        currentTrack.value = null
+      audio.addEventListener("play", (e) => {
+        currentTrack.value.duration = e.target.duration
+      })
+      audio.addEventListener("durationchange", e => {
+        const tmp = tracks.value.find(el => el.name === f.name)
+        if (tmp) {
+          tmp.duration = e.target.duration
+        }
       })
       tracks.value.push({
         name: f.name,
         title: f.title,
         el: body.appendChild(audio),
         isPlaying: false,
-        duration: 0,
+        time: 0,
+        duration: audio.duration,
         play: function() {
+          stopAll()
           currentTrack.value = this
           this.isPlaying = true
           this.el.play()
@@ -86,6 +95,7 @@ export function useAudio(files) {
         el.remove()
       }
     }
+    // Удаляем ссылки на элементы, чтобы удалить слушателей событий
     tracks.value = []
   })
 
