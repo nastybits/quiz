@@ -1,7 +1,8 @@
 /** Хранилище состояния текущей игры. TODO Заменить реализацию через Cookies на реализацию через БД */
 import { defineStore } from "pinia"
-import { consts } from "../plugins/consts"
+import { consts } from "@/plugins/consts"
 import Cookie from "js-cookie"
+import { useQuestionPacks } from "@/stores/questionPacks"
 
 export const useGameState = defineStore("gameState", {
   state: () => ({
@@ -12,6 +13,26 @@ export const useGameState = defineStore("gameState", {
     RoundState: null,
     QuestionIdx: null,
   }),
+  getters: {
+    /**
+     * Получение текущего пакета вопросов
+     * @return {null|object} - Текущий пакет вопросов из useQuestionPacks
+     */
+    pack() {
+      const packs = useQuestionPacks()
+      return packs.getPack(this.ID) || null
+    },
+    /**
+     * Получение текущего вопроса
+     * @return {null|object} - Текущий вопрос пакета
+     */
+    question() {
+      if (!this.pack) {
+        return null
+      }
+      return this.pack.Questions[this.QuestionIdx]
+    },
+  },
   actions: {
     /**
      * Запуск состояния
@@ -33,7 +54,7 @@ export const useGameState = defineStore("gameState", {
      */
     nextRound() {
       if (!this.ID) {
-        console.warn("Не выбран игра")
+        console.warn("Не выбрана игра")
         return
       }
       if (!this.RoundState !== consts.ROUND_STATES.TOTAL) {
@@ -72,7 +93,7 @@ export const useGameState = defineStore("gameState", {
       }
     },
     /**
-     * Удаление состояния
+     * Сброс состояния
      */
     reset() {
       Cookie.remove("gameState")
@@ -85,7 +106,7 @@ export const useGameState = defineStore("gameState", {
       console.log(this.ID, this.PackID, this.Team, this.Round, this.RoundState, this.QuestionIdx)
     },
     /**
-     * Восстановление состояния из Cookies
+     * Восстановление состояния из Cookie
      */
     restoreFromCookies() {
       const jsonState = Cookie.get("gameState")

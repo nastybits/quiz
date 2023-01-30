@@ -21,6 +21,11 @@ export const useQuestionPacks = defineStore('questionsPack', {
         this.packs = data
       }
     },
+    /**
+     * Получить пакет вопросов по ID
+     * @param {number} id - Идентификатор
+     * @return {object} - Пакет вопросов
+     */
     getPack(id) {
       return this.packs.find(p => p.ID === id)
     }

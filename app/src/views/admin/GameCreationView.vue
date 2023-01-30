@@ -100,7 +100,7 @@ let pack = ref(null)
 let isQuestionsShown = ref(false)
 
 const activePack = computed(() => {
-    return game.ID ? packsStore.getPack(game.PackID) : null
+    return game.pack
 })
 
 /**
