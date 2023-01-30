@@ -2,6 +2,10 @@
 import HomeView from "@/views/HomeView.vue"
 import NotFound from "@/views/NotFoundView.vue"
 
+/**
+ * Список маршрутов для Vue роутера
+ * @type [{path: string, component: object|function, name: string}]
+ */
 const routes = [
   {
     path: "/",
@@ -27,12 +31,7 @@ const routes = [
     path: "/admin/manage",
     name: "Game management",
     component: () => import("@/views/admin/GameManageView.vue")
-  },
-  {
-    path: "/round/:pID/:qID",
-    name: "round",
-    component: () => import("@/views/RoundView.vue")
-  },
+  }
 ]
 
 // В DEV окружении удобно иметь маршрут для проверки модулей и плагинов

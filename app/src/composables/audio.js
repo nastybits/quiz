@@ -1,19 +1,31 @@
 import { ref, onMounted, onBeforeUnmount } from "vue"
 
+/** Composable компонент для управления аудио */
 export function useAudio(files) {
+
+  /** @property {object} currentTrack - Текущий проигрываемый трек */
   const currentTrack = ref(null)
+
+  /** @property [{object}] Массив доступных треков */
   const tracks = ref([])
 
+  /**
+   * Начать проигрывание выбранного аудио
+   * @param {string} name - Имя аудио
+   */
   const play = (name) => {
     const track = tracks.value.find(el => el.name === name)
     if (!track) {
       return
     }
-
     currentTrack.value = track
     track.el.play()
   }
 
+  /**
+   * Остановить проигрывание выбранного аудио
+   * @param {string} name - Имя аудио
+   */
   const stop = (name) => {
     const track = tracks.value.find(el => el.name === name)
     if (!track) {
@@ -24,6 +36,9 @@ export function useAudio(files) {
     currentTrack.value = null
   }
 
+  /**
+   * Остановить проигрывание всех аудио
+   */
   const stopAll = () => {
     for (const track of tracks.value) {
       track.el.pause()
@@ -36,32 +51,34 @@ export function useAudio(files) {
   onMounted(() => {
     tracks.value = []
     for (const f of files) {
-      const body = document.querySelector("body")
       const audio = document.createElement("AUDIO")
       audio.src = `/audio/${f.src}`
       audio.id = f.name
       audio.style.display = "none"
+
+      // Обновляем время для текущего проигрываемого трека
       audio.addEventListener("timeupdate", (e) => {
         if (currentTrack.value) {
           currentTrack.value.time = e.target.currentTime
         }
       })
-      audio.addEventListener("play", (e) => {
-        currentTrack.value.duration = e.target.duration
-      })
+
+      // При изменении продолжительности обновляем значение duration у трека
       audio.addEventListener("durationchange", e => {
         const tmp = tracks.value.find(el => el.name === f.name)
         if (tmp) {
           tmp.duration = e.target.duration
         }
       })
+
+      const body = document.querySelector("body")
       tracks.value.push({
+        el: body.appendChild(audio),
         name: f.name,
         title: f.title,
-        el: body.appendChild(audio),
-        isPlaying: false,
         time: 0,
-        duration: audio.duration,
+        duration: 0,
+        isPlaying: false,
         play: function() {
           stopAll()
           currentTrack.value = this

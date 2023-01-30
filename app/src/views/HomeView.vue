@@ -1,3 +1,4 @@
+<!-- Компонент домашней страницы -->
 <template>
   <Page title="Добро пожаловать!">
     <Btn label="Создать игру" title="Создать игру" @click="router.push('/admin/create')" lg/>

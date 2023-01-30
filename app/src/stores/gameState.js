@@ -18,26 +18,26 @@ export const useGameState = defineStore("gameState", {
      * Получение текущего пакета вопросов
      * @return {null|object} - Текущий пакет вопросов из useQuestionPacks
      */
-    pack() {
+    Pack() {
       const packs = useQuestionPacks()
-      return packs.getPack(this.ID) || null
+      return packs.getPack(this.PackID) || null
     },
     /**
      * Получение текущего вопроса
      * @return {null|object} - Текущий вопрос пакета
      */
-    question() {
-      if (!this.pack) {
+    Question() {
+      if (!this.Pack) {
         return null
       }
-      return this.pack.Questions[this.QuestionIdx]
+      return this.Pack.Questions[this.QuestionIdx]
     },
   },
   actions: {
     /**
      * Запуск состояния
-     * @param {number} packID
-     * @param {string} team
+     * @param {number} packID - Идентификатор пакета
+     * @param {string} team - Имя команды
      */
     start(packID, team) {
       this.update({
@@ -103,7 +103,16 @@ export const useGameState = defineStore("gameState", {
      * Логирование
      */
     log() {
-      console.log(this.ID, this.PackID, this.Team, this.Round, this.RoundState, this.QuestionIdx)
+      console.log(
+        this.ID,
+        this.PackID,
+        this.Team,
+        this.Round,
+        this.RoundState,
+        this.QuestionIdx,
+        this.Pack,
+        this.Question
+      )
     },
     /**
      * Восстановление состояния из Cookie

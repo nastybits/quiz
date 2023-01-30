@@ -1,4 +1,4 @@
-<!-- Комопнент страницы для создания игры -->
+<!-- Компонент страницы для создания игры -->
 <template>
   <div class="container">
     <div class="row">
@@ -6,11 +6,11 @@
         <h2>Создание игры</h2>
         <form action="#">
           <div>
-            <label for="#teamName">Введите название команды</label>
+            <label for="teamName">Введите название команды</label>
             <input type="text" v-model="teamName" name="teamName" id="teamName">
           </div>
           <div>
-            <label for="#packID">Выберите пакет вопросов</label>
+            <label for="packID">Выберите пакет вопросов</label>
             <select v-model="pack" name="packID" id="packID">
               <option v-for="(p, i) of packsStore.packs" :value="p" :key="i">{{p.Name}}</option>
             </select>
@@ -95,32 +95,26 @@ const packsStore = useQuestionPacks()
 const game = useGameState()
 const router = useRouter()
 
-let teamName = ref(null)
-let pack = ref(null)
-let isQuestionsShown = ref(false)
+// Поля формы
+const teamName = ref(null)
+const pack = ref(null)
+const isQuestionsShown = ref(false)
 
 const activePack = computed(() => {
-    return game.pack
+    return game.Pack
 })
 
 /**
- * @param {number} id
- * @param {string} team
+ * Запуск новой игры
+ * @param {number} id - Идентификатор пакета
+ * @param {string} team - Имя команды
  */
 function startGame(id, team) {
   game.start(id, team)
-  game.log()
   router.push("/admin/manage")
 }
 </script>
 
 <style lang="scss" scoped>
-.sidebar {
-  padding-top: 20px;
-}
 
-.frame {
-  width: 100%;
-  height: 700px;
-}
 </style>
