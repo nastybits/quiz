@@ -1,10 +1,4 @@
-/** Маршрутизатор Vue (https://router.vuejs.org/ru/)
- ---------------------------
- @author Nastybits
- @email podosenov.dn@gmail.com
- @date 23.01.2023
- **/
-
+/** Маршрутизатор Vue (https://router.vuejs.org/ru/) */
 import { createRouter, createWebHistory } from "vue-router"
 import routes from "./routes"
 

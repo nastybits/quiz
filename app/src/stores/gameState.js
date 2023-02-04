@@ -1,7 +1,8 @@
 /** Хранилище состояния текущей игры. TODO Заменить реализацию через Cookies на реализацию через БД */
 import { defineStore } from "pinia"
-import { consts } from "../plugins/consts"
+import { consts } from "@/plugins/consts"
 import Cookie from "js-cookie"
+import { useQuestionPacks } from "@/stores/questionPacks"
 
 export const useGameState = defineStore("gameState", {
   state: () => ({
@@ -13,17 +14,39 @@ export const useGameState = defineStore("gameState", {
     QuestionIdx: null,
   }),
   getters: {
+    /**
+     * Получение имени текущего этапа раунда
+     * @return {null|string} - Имя этапа раунда
+     */
     RoundStateName() {
       return this.RoundState !== null
         ? consts.ROUND_STATES_MAP[this.RoundState]
         : null
+    },
+    /**
+     * Получение текущего пакета вопросов
+     * @return {null|object} - Текущий пакет вопросов из useQuestionPacks
+     */
+    Pack() {
+      const packs = useQuestionPacks()
+      return packs.getPack(this.PackID) || null
+    },
+    /**
+     * Получение текущего вопроса
+     * @return {null|object} - Текущий вопрос пакета
+     */
+    Question() {
+      if (!this.Pack) {
+        return null
+      }
+      return this.Pack.Questions[this.QuestionIdx]
     }
   },
   actions: {
     /**
      * Запуск состояния
-     * @param {number} packID
-     * @param {string} team
+     * @param {number} packID - Идентификатор пакета
+     * @param {string} team - Имя команды
      */
     start(packID, team) {
       this.update({
@@ -52,7 +75,7 @@ export const useGameState = defineStore("gameState", {
      */
     nextRound() {
       if (!this.ID) {
-        console.warn("Не выбран игра")
+        console.warn("Не выбрана игра")
         return
       }
       if (this.RoundState !== consts.ROUND_STATES.COMPLETE) {
@@ -91,7 +114,7 @@ export const useGameState = defineStore("gameState", {
       }
     },
     /**
-     * Удаление состояния
+     * Сброс состояния
      */
     reset() {
       Cookie.remove("gameState")
@@ -101,10 +124,19 @@ export const useGameState = defineStore("gameState", {
      * Логирование
      */
     log() {
-      console.log(this.ID, this.PackID, this.Team, this.Round, this.RoundState, this.QuestionIdx)
+      console.log(
+        this.ID,
+        this.PackID,
+        this.Team,
+        this.Round,
+        this.RoundState,
+        this.QuestionIdx,
+        this.Pack,
+        this.Question
+      )
     },
     /**
-     * Восстановление состояния из Cookies
+     * Восстановление состояния из Cookie
      */
     restoreFromCookies() {
       const jsonState = Cookie.get("gameState")

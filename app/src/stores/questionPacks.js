@@ -3,10 +3,14 @@ import { defineStore } from "pinia"
 
 export const useQuestionPacks = defineStore('questionsPack', {
   state: () => ({
-    // Массив загруженных пакетов
+    /** @property {[object]} packs - Массив загруженных пакетов */
     packs: []
   }),
   actions: {
+    /**
+     * Инициализация пакетов вопросов
+     * @param {[object]|JSON} data - Массив объектов пакетов вопросов
+     */
     init(data) {
       if (typeof data === "string") {
         try {
@@ -21,6 +25,11 @@ export const useQuestionPacks = defineStore('questionsPack', {
         this.packs = data
       }
     },
+    /**
+     * Получить пакет вопросов по ID
+     * @param {number} id - Идентификатор пакета
+     * @return {object|null} - Объект пакета вопросов или null если не найден
+     */
     getPack(id) {
       return this.packs.find(p => p.ID === id)
     }
