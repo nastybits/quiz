@@ -65,12 +65,13 @@ export function useAudio(files) {
 
       // При изменении продолжительности обновляем значение duration у трека
       audio.addEventListener("durationchange", e => {
-        const tmp = tracks.value.find(el => el.name === f.name)
-        if (tmp) {
-          tmp.duration = e.target.duration
+        const track = tracks.value.find(el => el.name === f.name)
+        if (track) {
+          track.duration = e.target.duration
         }
       })
 
+      // При завершении трека устанвливаем isPlaying в false
       audio.addEventListener("ended", e => {
         if (currentTrack.value) {
           currentTrack.value.isPlaying = false
