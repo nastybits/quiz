@@ -7,10 +7,10 @@
   </div>
   <audio
       v-for="(a, i) of audioFiles"
+      style="display: none"
       :ref="el => { audios[i] = el }"
       :src="`/audio/${a.src}`"
       :key="i"
-      style="display: none"
   />
   <QBtn
       v-for="(a, i) of audioFiles"

@@ -12,6 +12,13 @@ export const useGameState = defineStore("gameState", {
     RoundState: null,
     QuestionIdx: null,
   }),
+  getters: {
+    RoundStateName() {
+      return this.RoundState !== null
+        ? consts.ROUND_STATES_MAP[this.RoundState]
+        : null
+    }
+  },
   actions: {
     /**
      * Запуск состояния
@@ -29,6 +36,18 @@ export const useGameState = defineStore("gameState", {
       })
     },
     /**
+     * Переход к следующему этапу раунда
+     */
+    nextState() {
+      if (this.RoundState >= consts.ROUND_STATES.COMPLETE) {
+        console.warn("Раунд завершен")
+        return
+      }
+      this.update({
+        RoundState: this.RoundState + 1
+      })
+    },
+    /**
      * Переход к следующему раунду
      */
     nextRound() {
@@ -36,8 +55,8 @@ export const useGameState = defineStore("gameState", {
         console.warn("Не выбран игра")
         return
       }
-      if (!this.RoundState !== consts.ROUND_STATES.TOTAL) {
-        console.warn("Раунд не завершен")
+      if (this.RoundState !== consts.ROUND_STATES.COMPLETE) {
+        console.warn("Раунд не завершен", this.RoundState)
         return
       }
       this.update({
