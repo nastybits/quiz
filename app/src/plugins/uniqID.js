@@ -46,6 +46,6 @@ export default function install(app, options = {}) {
     }
   })
 
-  app.config.globalProperties.$id = methods.$generateUid(uidProp)
-  app.config.globalProperties.$idRef = methods.$idRef
+  app.config.globalProperties.$uid = methods.$generateUid(uidProp)
+  app.config.globalProperties.$uidRef = methods.$idRef
 }

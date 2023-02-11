@@ -4,14 +4,17 @@ import {createPinia} from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-/** Plugins */
+/** Плагины */
 import constants from "@plugins/consts" // Константы приложения
 import uniqIDs from "@plugins/uniqID" // Уникальный идентификатор компонента
 
+/** Глобальные компоненты */
 /** UI */
-// import QBtn from "@/components/ui/QBtn.vue"
+import QBtn from "@/components/ui/QBtn.vue"
+/** Инпуты */
+import QInput from "@/components/inputs/QInput.vue"
 
-/** Styles */
+/** Глобальные стили */
 import 'modern-normalize/modern-normalize.css';
 import '@/assets/scss/style.scss'
 
@@ -22,6 +25,9 @@ app
   .use(uniqIDs)
   .use(createPinia())
   .use(router)
-  // .use(QBtn)
+
+app
+  .component("Btn", QBtn)
+  .component("Ipt", QInput)
 
 app.mount('#app')

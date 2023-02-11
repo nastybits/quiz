@@ -7,7 +7,6 @@
 </template>
 
 <script setup>
-import Btn from "@/components/ui/QBtn.vue"
 import Page from "@/components/Page.vue"
 import { useRouter } from "vue-router"
 

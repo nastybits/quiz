@@ -5,10 +5,7 @@
       <div class="md-8">
         <h2>Создание игры</h2>
         <form action="#">
-          <div>
-            <label for="teamName">Введите название команды</label>
-            <input type="text" v-model="teamName" name="teamName" id="teamName">
-          </div>
+          <Ipt v-model="teamName" name="tName" label="Название команды" placeholder="Введите название команды"/>
           <div>
             <label for="packID">Выберите пакет вопросов</label>
             <select v-model="pack" name="packID" id="packID">
