@@ -1,4 +1,4 @@
-<!-- Компонент полей ввода для пользователя -->
+<!-- Компонент полей ввода для пользователя TODO: В дальнейшем должен быть фабрикой для создания инпутов -->
 <template>
 <div :class="['q-input', {'q-input_disabled': disabled, 'q-input_error': error}]">
   <label class="q-input__label" :for="$uid">{{ label }}</label>
