@@ -85,7 +85,6 @@ import { ref, computed } from "vue"
 import { useQuestionPacks } from "@/stores/questionPacks"
 import { useGameState } from "@/stores/gameState"
 import { useRouter } from "vue-router"
-import QBtn from "@/components/ui/QBtn.vue"
 
 // Хранилище пакетов
 const packsStore = useQuestionPacks()

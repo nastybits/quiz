@@ -10,16 +10,18 @@
       :title="label"
       :type="type"
       :placeholder="placeholder"
-      @input="emit('input', modelValue)"
+      @input="$emit('update:modelValue', modelValue)"
   />
 </div>
 </template>
 
 <script setup>
 import { defineEmits, defineProps } from "vue"
-defineEmits([
-    "input"
+
+const emit = defineEmits([
+  "input"
 ])
+
 const props = defineProps({
   modelValue: {
     type: [null, String],

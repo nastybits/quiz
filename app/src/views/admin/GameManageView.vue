@@ -30,7 +30,6 @@
 </template>
 
 <script setup>
-import QBtn from "@/components/ui/QBtn.vue"
 import TheGame from "@/components/TheGame.vue"
 import { useGameState } from "@/stores/gameState"
 import { useAudio } from "@/composables/audio"
