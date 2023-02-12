@@ -9,7 +9,7 @@
           <div>
             <label for="packID">Выберите пакет вопросов</label>
             <select v-model="pack" name="packID" id="packID">
-              <option v-for="(p, i) of packsStore.packs" :value="p" :key="i">{{p.Name}}</option>
+              <option v-for="(p, i) of packsStore.packs" :value="p" :key="i">{{ p.Name }}</option>
             </select>
           </div>
         </form>
@@ -34,18 +34,19 @@
               <td>{{ pack.Questions.length }}</td>
             </tr>
           </table>
-          <QBtn :label="isQuestionsShown ? 'Скрыть список вопросов' : 'Показать cписок вопросов'" :title="isQuestionsShown ? 'Скрыть' : 'Показать'" @click="isQuestionsShown = !isQuestionsShown"/>
+          <Btn :label="isQuestionsShown ? 'Скрыть список вопросов' : 'Показать cписок вопросов'"
+                :title="isQuestionsShown ? 'Скрыть' : 'Показать'" @click="isQuestionsShown = !isQuestionsShown"/>
           <ol v-show="isQuestionsShown">
             <li v-for="(q, i) of pack.Questions" :key="'q'+i">
               <p>{{ q.Text }}</p>
               <p>{{ q.Wording }}</p>
-              <p>{{ q.Answer.Text}}</p>
+              <p>{{ q.Answer.Text }}</p>
               <p>{{ q.Comment }}</p>
             </li>
           </ol>
         </div>
         <hr>
-        <QBtn v-if="pack && teamName" label="Начать" title="Начать" @click="startGame(pack.ID, teamName)"/>
+        <Btn v-if="pack && teamName" label="Начать" title="Начать" @click="startGame(pack.ID, teamName)"/>
       </div>
       <div class="md-4">
         <h2>Активные игры</h2>
@@ -73,7 +74,7 @@
               <td>{{ game.QuestionIdx }}</td>
             </tr>
           </table>
-          <QBtn label="Проложить" title="Продолжить" @click="router.push('/admin/manage')"/>
+          <Btn label="Проложить" title="Продолжить" @click="router.push('/admin/manage')"/>
         </div>
       </div>
     </div>
@@ -81,10 +82,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
-import { useQuestionPacks } from "@/stores/questionPacks"
-import { useGameState } from "@/stores/gameState"
-import { useRouter } from "vue-router"
+import {ref, computed} from "vue"
+import {useQuestionPacks} from "@/stores/questionPacks"
+import {useGameState} from "@/stores/gameState"
+import {useRouter} from "vue-router"
 
 // Хранилище пакетов
 const packsStore = useQuestionPacks()
@@ -97,7 +98,7 @@ const pack = ref(null)
 const isQuestionsShown = ref(false)
 
 const activePack = computed(() => {
-    return game.Pack
+  return game.Pack
 })
 
 /**

@@ -6,12 +6,12 @@
         <h1>Управление игрой</h1>
         <h3>Пакет: {{ game.Pack.Title }}</h3>
         <h3>Команда: {{ game.Team }}</h3>
-        <QBtn label="Следующий этап раунда" @click="game.nextState()"/>
-        <QBtn label="Следующий раунд" @click="game.nextRound()"/>
-        <QBtn label="Сбросить" @click="game.reset()"/>
-        <QBtn label="Логировать" @click="game.log()"/>
+        <Btn label="Следующий этап раунда" @click="game.nextState()"/>
+        <Btn label="Следующий раунд" @click="game.nextRound()"/>
+        <Btn label="Сбросить" @click="game.reset()"/>
+        <Btn label="Логировать" @click="game.log()"/>
         <template v-if="audio.tracks.value">
-          <QBtn
+          <Btn
               v-for="(track, i) of audio.tracks.value"
               :label="track.title+' '+(track.duration ? getTime(track.duration) : '')"
               :title="track.title"
