@@ -12,14 +12,12 @@
       <li>Ответ фиксируется ведущим, а затем озвучивается правильный ответ.</li>
     </ol>
     <template #footer>
-      <Btn label="Продолжить" title="Продолжить" @click="router.push('/round/1/1')"/>
+      <Btn label="Назад" title="Назад" @click="router.push('/')"/>
     </template>
   </Page>
 </template>
 
 <script setup>
-import Btn from "@/components/ui/QBtn.vue"
-import Page from "@/components/Page.vue"
 import { useRouter } from "vue-router"
 
 const router = useRouter()

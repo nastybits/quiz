@@ -8,7 +8,6 @@
 </template>
 
 <script setup>
-import Page from "@/components/Page.vue"
 import { useRouter } from "vue-router"
 
 const router = useRouter()

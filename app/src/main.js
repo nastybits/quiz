@@ -9,6 +9,7 @@ import constants from "@plugins/consts" // Константы приложени
 import uniqIDs from "@plugins/uniqID" // Уникальный идентификатор компонента
 
 /** Глобальные компоненты */
+import Page from "@/components/Page.vue"
 /** UI */
 import QBtn from "@/components/ui/QBtn.vue"
 /** Инпуты */
@@ -27,6 +28,7 @@ app
   .use(router)
 
 app
+  .component("Page", Page)
   .component("Btn", QBtn)
   .component("Ipt", QInput)
 
