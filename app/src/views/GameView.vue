@@ -6,7 +6,6 @@
 </template>
 
 <script setup>
-import Page from "@/components/Page.vue"
 import TheGame from "@/components/TheGame.vue"
 </script>
 
