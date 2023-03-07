@@ -1,35 +1,30 @@
-# app
+# WebQuiz
 
-This template should help get you started developing with Vue 3 in Vite.
+Web-приложение для создания и проведения игр в жанре Квиз.
 
-## Recommended IDE Setup
+## Конфигурация
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Смотри [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Развертывание
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Сборка Dev версии
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Сборка Prod версии
 
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
-
+### Линтер [ESLint](https://eslint.org/)
 ```sh
 npm run lint
 ```
